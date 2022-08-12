@@ -382,27 +382,28 @@
           "name": "TZ"
         },
         {
-          "label": "ZEROTIER_ONE_NETWORK_IDS",
+          "label": "NETWORK_IDS",
           "name": "ZEROTIER_ONE_NETWORK_IDS"
         },
         {
-          "label": "ZEROTIER_ONE_LOCAL_PHYS",
+          "label": "LOCAL_PHYS",
           "name": "ZEROTIER_ONE_LOCAL_PHYS"
         },
         {
           "default": "false",
-          "label": "ZEROTIER_ONE_USE_IPTABLES_NFT",
+          "label": "IPTABLES_NFT",
           "name": "ZEROTIER_ONE_USE_IPTABLES_NFT"
         },
         {
           "default": "both",
-          "label": "ZEROTIER_ONE_GATEWAY_MODE",
+          "label": "GATEWAY_MODE",
           "name": "ZEROTIER_ONE_GATEWAY_MODE"
         }
       ],
       "image": "zyclonite/zerotier:router",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f1/ZeroTier_Logo.png",
       "name": "ZeroTier",
+      "network": "host",
       "platform": "linux",
       "ports": ["9993:9993/udp"],
       "restart_policy": "unless-stopped",
