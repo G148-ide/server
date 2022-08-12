@@ -7,6 +7,7 @@ services:
     devices:
       - /dev/net/tun
     network_mode: host
+    hostname: zerotier
     volumes:
       - /portainer/ZeroTier:/var/lib/zerotier-one
     cap_add:
