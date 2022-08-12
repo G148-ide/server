@@ -1,0 +1,26 @@
+---
+version: '3'
+services:
+  zerotier:
+    image: zyclonite/zerotier:router
+    container_name: zerotier
+    devices:
+      - /dev/net/tun
+    network_mode: host
+    volumes:
+      - /portainer/ZeroTier:/var/lib/zerotier-one
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+      - NET_RAW
+    ports:
+      - 9993:9993
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - ZEROTIER_ONE_LOCAL_PHYS=${ZEROTIER_ONE_LOCAL_PHYS}
+      - ZEROTIER_ONE_USE_IPTABLES_NFT=${ZEROTIER_ONE_USE_IPTABLES_NFT}
+      - ZEROTIER_ONE_GATEWAY_MODE=${ZEROTIER_ONE_GATEWAY_MODE}
+      - ZEROTIER_ONE_NETWORK_IDS=${ZEROTIER_ONE_NETWORK_IDS}
