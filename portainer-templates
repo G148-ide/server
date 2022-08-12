@@ -1,0 +1,420 @@
+{
+  "version": "2",
+  "templates": [
+    {
+      "categories": ["Other"],
+      "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it’ll cover ALL your home devices, and you don’t need any client-side software for that. With the rise of Internet-Of-Things and connected devices, it becomes more and more important to be able to control your whole network.",
+      "env": [
+        {
+          "default": "1000",
+          "label": "PUID",
+          "name": "PUID"
+        },
+        {
+          "default": "1000",
+          "label": "PGID",
+          "name": "PGID"
+        },
+        {
+          "label": "CONTEXT_PATH",
+          "name": "CONTEXT_PATH",
+          "set": "adguard home"
+        }
+      ],
+      "image": "adguard/adguardhome:latest",
+      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/adguard.png",
+      "name": "adguard",
+      "platform": "linux",
+      "ports": [
+        "53:53/tcp",
+        "53:53/udp",
+        "5443:5443/tcp",
+        "5443:5443/udp",
+        "853:853/tcp",
+        "3000:3000/tcp"
+      ],
+      "restart_policy": "unless-stopped",
+      "title": "Adguard",
+      "hostname": "Adguard",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/Adguard/Workdir",
+          "container": "/opt/adguardhome/work"
+        },
+        {
+          "bind": "/portainer/Adguard/Conf",
+          "container": "/opt/adguardhome/conf"
+        }
+      ]
+    },
+    {
+      "categories": ["Other", "Tools"],
+      "description": "Web File Browser which can be used as a middleware or standalone app.",
+      "env": [
+        {
+          "default": "1000",
+          "label": "PUID",
+          "name": "PUID"
+        },
+        {
+          "default": "1000",
+          "label": "PGID",
+          "name": "PGID"
+        }
+      ],
+      "image": "filebrowser/filebrowser:latest",
+      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/filebrowser.png",
+      "name": "filebrowser",
+      "note": "The default user and password is admin/admin.",
+      "platform": "linux",
+      "ports": ["8082:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "FileBrowser",
+	  "hostname": "FileBrowser",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/FileBrowser/filebrowser.db",
+          "container": "/database/filebrowser.db"
+        },
+        {
+          "bind": "/portainer/FileBrowser/settings.json",
+          "container": "/config/settings.json"
+        },
+        {
+          "bind": "/data/myfiles",
+          "container": "/srv"
+        }
+      ]
+    },
+	{
+      "categories": ["Tools", "Web", "Other"],
+      "description": "Heimdall is a way to organise all those links to your most used web sites and web applications in a simple way.",
+      "env": [
+        {
+          "default": "1000",
+          "label": "PUID",
+          "name": "PUID"
+        },
+        {
+          "default": "1000",
+          "label": "PGID",
+          "name": "PGID"
+        }
+      ],
+      "image": "linuxserver/heimdall:latest",
+      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/heimdall-icon.png",
+      "name": "heimdall",
+      "platform": "linux",
+      "ports": ["80:80/tcp", "443:443/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Heimdall",
+      "hostname": "Heimdall",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/Heimdall",
+          "container": "/config"
+        }
+      ]
+    },
+    {
+      "categories": ["Video", "Music", "Photos"],
+      "description": "Jellyfin is a Free Software Media System that puts you in control of managing and streaming your media. It is an alternative to the proprietary Emby and Plex, to provide media from a dedicated server to end-user devices via multiple apps.",
+      "env": [
+        {
+          "default": "1000",
+          "label": "PUID",
+          "name": "PUID"
+        },
+        {
+          "default": "1000",
+          "label": "PGID",
+          "name": "PGID"
+        },
+        {
+          "label": "TZ",
+          "name": "TZ"
+        }
+      ],
+      "image": "linuxserver/jellyfin:latest",
+      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/jellyfin.png",
+      "name": "jellyfin",
+      "platform": "linux",
+      "ports": ["8096:8096/tcp", "8920:8920/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Jellyfin",
+      "hostname": "Jellyfin",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/Jellyfin",
+          "container": "/config"
+        },
+        {
+          "bind": "/portainer/TV",
+          "container": "/data/tvshows"
+        },
+        {
+          "bind": "/portainer/Movies",
+          "container": "/data/movies"
+        }
+      ]
+    },
+    {
+      "categories": ["Other", "Tools"],
+      "description": "A Free and Open Source Speedtest for HTML5 and more.",
+      "image": "linuxserver/librespeed:latest",
+      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/speedtest.png",
+      "name": "librespeed",
+      "platform": "linux",
+      "ports": ["8080:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Libre Speed",
+      "hostname": "LibreSpeed",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/LibreSpeed",
+          "container": "/config"
+        }
+      ]
+    },
+    {
+      "categories": ["Tools", "Web", "Other"],
+      "description": "MikroTik Hotspot Monitor (Mikhmon) is a web-based application (MikroTik API class PHP) to help manage the Mikrotik management system, especially hotspot management.",
+      "image": "animega/mikhmon:latest",
+      "logo": "https://raw.githubusercontent.com/animegasan/mikhmon/main/version-4/assets/img/logo-test.png",
+      "name": "mikhmon",
+      "note": "The default user and password is mikhmon/1234.",
+      "platform": "linux",
+      "ports": ["8080:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Mikhmon",
+      "hostname": "Mikhmon",
+      "type": 1
+    },
+    {
+      "categories": ["Tools", "Web", "Other"],
+      "description": "NextPVR is a whole-home digital video recorder. The NextPVR server can be installed on Windows, Linux, Mac or Docker. Clients are available for a wide range of devices, allowing you access recordings and live TV throughout your home.",
+      "image": "nextpvr/nextpvr_arm32v7:latest",
+      "logo": "https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/plugins/SVG/jellyfin-plugin-nextpvr.svg",
+      "name": "nextpvr-arm32",
+      "note": "The default user and password is admin/password.",
+      "platform": "linux",
+      "ports": ["8866:8866/tcp"],
+      "devices": "/dev/dvb:/dev/dvb",
+      "restart_policy": "unless-stopped",
+      "title": "Next PVR for ARM32",
+      "hostname": "NextPVR-ARM32",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/NextPVR",
+          "container": "/config"
+        },
+        {
+          "bind": "/portainer/Recordings",
+          "container": "/recordings"
+        },
+        {
+          "bind": "/portainer/Buffer",
+          "container": "/buffer"
+        }
+      ]
+    },
+    {
+      "categories": ["Tools", "Web", "Other"],
+      "description": "NextPVR is a whole-home digital video recorder. The NextPVR server can be installed on Windows, Linux, Mac or Docker. Clients are available for a wide range of devices, allowing you access recordings and live TV throughout your home.",
+      "image": "nextpvr/nextpvr_amd64:latest",
+      "logo": "https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/plugins/SVG/jellyfin-plugin-nextpvr.svg",
+      "name": "nextpvr-amd64",
+      "note": "The default user and password is admin/password.",
+      "platform": "linux",
+      "ports": ["8866:8866/tcp"],
+      "devices": "/dev/dvb:/dev/dvb",
+      "restart_policy": "unless-stopped",
+      "title": "Next PVR for AMD64",
+      "hostname": "NextPVR-AMD64",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/NextPVR",
+          "container": "/config"
+        },
+        {
+          "bind": "/portainer/Recordings",
+          "container": "/recordings"
+        },
+        {
+          "bind": "/portainer/Buffer",
+          "container": "/buffer"
+        }
+      ]
+    },
+    {
+      "categories": ["Downloaders"],
+      "description": "Pyload is Free and Open Source download manager written in Python and designed to be extremely lightweight, easily extensible and fully manageable via web.",
+      "env": [
+        {
+          "default": "1000",
+          "label": "PUID",
+          "name": "PUID"
+        },
+        {
+          "default": "1000",
+          "label": "PGID",
+          "name": "PGID"
+        },
+        {
+          "label": "TZ",
+          "name": "TZ"
+        }
+      ],
+      "image": "linuxserver/pyload-ng:latest",
+      "logo": "https://raw.githubusercontent.com/pyload/pyload/main/media/logo.png",
+      "name": "pyload",
+      "note": "The default user and password is pyload/pyload.",
+      "platform": "linux",
+      "ports": ["8000:8000/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Pyload",
+      "hostname": "Pyload",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/Pyload",
+          "container": "/config"
+        },
+        {
+          "bind": "/portainer/Downloads",
+          "container": "/downloads"
+        }
+      ]
+    },
+    {
+      "categories": ["Downloaders"],
+      "description": "Transmission is designed for easy, powerful use. Transmission has the features you want from a BitTorrent client: encryption, a web interface, peer exchange, magnet links, DHT, µTP, UPnP and NAT-PMP port forwarding, webseed support, watch directories, tracker editing, global and per-torrent speed limits, and more.",
+      "env": [
+        {
+          "default": "1000",
+          "label": "PUID",
+          "name": "PUID"
+        },
+        {
+          "default": "1000",
+          "label": "PGID",
+          "name": "PGID"
+        }
+      ],
+      "image": "linuxserver/transmission:latest",
+      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/transmission-icon.png",
+      "name": "transmission",
+      "platform": "linux",
+      "ports": ["9091:9091/tcp", "51413:51413/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Transmission",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/Transmission",
+          "container": "/config"
+        },
+        {
+          "bind": "/portainer/Downloads",
+          "container": "/downloads"
+        }
+      ]
+    },
+    {
+      "categories": ["Video", "Other"],
+      "description": "TVHeadend is a TV streaming server and recorder for Linux, FreeBSD and Android supporting DVB-S, DVB-S2, DVB-C, DVB-T, ATSC, ISDB-T, IPTV, SAT\u0026gt;IP and HDHomeRun as input sources. Tvheadend offers the HTTP (VLC, MPlayer), HTSP (Kodi, Movian) and SAT\u0026gt;IP streaming. Multiple EPG sources are supported (over-the-air DVB and ATSC including OpenTV DVB extensions, XMLTV, PyXML).",
+      "env": [
+        {
+          "default": "1000",
+          "label": "PUID",
+          "name": "PUID"
+        },
+        {
+          "default": "1000",
+          "label": "PGID",
+          "name": "PGID"
+        }
+      ],
+      "image": "linuxserver/tvheadend:latest",
+      "logo": "http://i.imgur.com/zGSUAT4.png",
+      "name": "tvheadend",
+      "platform": "linux",
+      "ports": ["9981:9981/tcp", "9982:9982/tcp"],
+      "devices": "/dev/dvb:/dev/dvb",
+      "restart_policy": "unless-stopped",
+      "title": "TVHeadend",
+      "hostname": "TVHeadend",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/TVHeadend",
+          "container": "/config"
+        },
+        {
+          "bind": "/portainer/Recordings",
+          "container": "/recordings"
+        }
+      ]
+    },
+    {
+      "categories": ["Other"],
+      "description": "ZeroTier is a smart programmable Ethernet switch for planet Earth. It allows all networked devices, VMs, containers, and applications to communicate as if they all reside in the same physical data center or cloud region.",
+      "env": [
+        {
+          "default": "1000",
+          "label": "PUID",
+          "name": "PUID"
+        },
+        {
+          "default": "1000",
+          "label": "PGID",
+          "name": "PGID"
+        },
+        {
+          "label": "Timezone",
+          "name": "TZ"
+        },
+        {
+          "label": "ZEROTIER_ONE_NETWORK_IDS",
+          "name": "ZEROTIER_ONE_NETWORK_IDS"
+        },
+        {
+          "label": "ZEROTIER_ONE_LOCAL_PHYS",
+          "name": "ZEROTIER_ONE_LOCAL_PHYS"
+        },
+        {
+          "default": "false",
+          "label": "ZEROTIER_ONE_USE_IPTABLES_NFT",
+          "name": "ZEROTIER_ONE_USE_IPTABLES_NFT"
+        },
+        {
+          "default": "both",
+          "label": "ZEROTIER_ONE_GATEWAY_MODE",
+          "name": "ZEROTIER_ONE_GATEWAY_MODE"
+        }
+      ],
+      "image": "zyclonite/zerotier:router",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f1/ZeroTier_Logo.png",
+      "name": "ZeroTier",
+      "platform": "linux",
+      "ports": ["9993:9993/udp"],
+      "restart_policy": "unless-stopped",
+      "title": "ZeroTier",
+      "hostname": "ZeroTier",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/portainer/ZeroTier",
+          "container": "/var/lib/zerotier-one"
+        }
+      ]
+    }
+  ]
+}
