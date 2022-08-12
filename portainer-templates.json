@@ -386,6 +386,7 @@
           "name": "ZEROTIER_ONE_NETWORK_IDS"
         },
         {
+          "default": "eth0",
           "label": "LOCAL_PHYS",
           "name": "ZEROTIER_ONE_LOCAL_PHYS"
         },
