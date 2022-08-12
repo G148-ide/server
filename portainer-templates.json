@@ -134,7 +134,7 @@
           "name": "PGID"
         },
         {
-          "label": "TZ",
+          "label": "Timezone",
           "name": "TZ"
         }
       ],
@@ -268,7 +268,7 @@
           "name": "PGID"
         },
         {
-          "label": "TZ",
+          "label": "Timezone",
           "name": "TZ"
         }
       ],
