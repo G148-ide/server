@@ -403,7 +403,7 @@
       ],
       "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f1/ZeroTier_Logo.png",
       "name": "ZeroTier",
-      "note": "<a href='https://github.com/zyclonite/zerotier-docker/blob/main/README-router.md'>Visit README-router</a>",
+      "note": "<a href='https://github.com/zyclonite/zerotier-docker/blob/main/README-router.md' target='_blank'>Visit README-router</a>",
       "platform": "linux",
       "repository": {
         "stackfile": "template/stack/zerotier.yml",
