@@ -7,7 +7,7 @@ services:
     restart: always
     command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
     environment:
-      MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks: 
       - zabbix
   zabbix-java-gateway:
@@ -15,7 +15,7 @@ services:
     container_name: zabbix-java-gateway
     restart: always
     environment:
-      ZBX_START_POLLERS=5
+      ZBX_START_POLLERS: 5
     networks:
       - zabbix
   zabbix-server:
@@ -23,15 +23,15 @@ services:
     container_name: zabbix-server
     restart: always
     environment:
-      DB_SERVER_HOST=zabbix-database
-      MYSQL_DATABASE=zabbix
-      MYSQL_USER=${MYSQL_USER}
-      MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      ZBX_IPMIPOLLERS=1
-      ZBX_JAVAGATEWAY_ENABLE=true
-      ZBX_JAVAGATEWAY=zabbix-java-gateway
-      ZBX_STARTJAVAPOLLERS=5
+      DB_SERVER_HOST: zabbix-database
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      ZBX_IPMIPOLLERS: 1
+      ZBX_JAVAGATEWAY_ENABLE: true
+      ZBX_JAVAGATEWAY: zabbix-java-gateway
+      ZBX_STARTJAVAPOLLERS: 5
     ports: 
       - 10051:10051
     networks: 
@@ -49,10 +49,10 @@ services:
     container_name: zabbix-frontend
     restart: always
     environment: 
-      DB_SERVER_HOST=zabbix-database
-      MYSQL_DATABASE=zabbix
-      MYSQL_USER=${MYSQL_USER} 
-      MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      DB_SERVER_HOST: zabbix-database
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: ${MYSQL_USER} 
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports: 
       - ${PORT}:8080
     networks: 
@@ -70,8 +70,8 @@ services:
     restart: always
     privileged: true
     environment: 
-      ZBX_HOSTNAME=Zabbix
-      ZBX_SERVER_HOST=zabbix
+      ZBX_HOSTNAME: Zabbix server
+      ZBX_SERVER_HOST: zabbix
     ports: 
       - 10050:10050
     networks: 
