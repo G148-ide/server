@@ -365,6 +365,37 @@
     },
     {
       "categories": ["Other"],
+      "description": "Zabbix is a mature and effortless enterprise-class open source monitoring solution for network monitoring and application monitoring of millions of metrics.",
+      "env": [
+        {
+          "label": "MySql User",
+          "name": "MYSQL_USER"
+        },
+        {
+          "label": "MySql Password",
+          "name": "MYSQL_PASSWORD"
+        },
+        {
+          "label": "MySql Root Password",
+          "name": "MYSQL_ROOT_PASSWORD"
+        },
+        {
+          "label": "Port Web Server",
+          "name": "PORT"
+        }
+      ],
+      "logo": "https://cdn.icon-icons.com/icons2/2699/PNG/512/zabbix_logo_icon_167937.png",
+      "name": "Zabbix",
+      "platform": "linux",
+      "repository": {
+        "stackfile": "template/stack/zabbix.yml",
+        "url": "https://github.com/animegasan/server"
+      },
+      "title": "Zabbix",
+      "type": 3
+    },
+    {
+      "categories": ["Other"],
       "description": "ZeroTier is a smart programmable Ethernet switch for planet Earth. It allows all networked devices, VMs, containers, and applications to communicate as if they all reside in the same physical data center or cloud region.",
       "env": [
         {
