@@ -10,6 +10,8 @@ services:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks: 
       - zabbix
+    volumes: 
+      - /portainer/Zabbix/mysql:/var/lib/mysql
   zabbix-java-gateway:
     image: zabbix/zabbix-java-gateway:alpine-latest
     container_name: zabbix-java-gateway
@@ -44,6 +46,8 @@ services:
       - /portainer/Zabbix/ssl/keys:/var/lib/zabbix/ssl/keys
       - /portainer/Zabbix/ssl/ssl_ca:/var/lib/zabbix/ssl/ssl_ca
       - /portainer/Zabbix/externalscripts:/usr/lib/zabbix/externalscripts
+      - /portainer/Zabbix/export:/var/lib/zabbix/export
+      - /portainer/Zabbix/snmptraps:/var/lib/zabbix/snmptraps
   zabbix-frontend:
     image: zabbix/zabbix-web-apache-mysql:alpine-latest
     container_name: zabbix-frontend
@@ -62,8 +66,8 @@ services:
       - zabbix-java-gateway
       - zabbix-server
     volumes: 
-      - /portainer/Zabbix/ssl/apache2:/etc/ssl/apache2
-      - /poratiner/Zabbix/web/certs:/etc/zabbix/web/certs
+      - portainer/Zabbix/ssl/apache2:/etc/ssl/apache2
+      - poratiner/Zabbix/web/certs:/etc/zabbix/web/certs
   zabbix-agent2:
     image: zabbix/zabbix-agent2:alpine-latest
     container_name: zabbix-agent2
