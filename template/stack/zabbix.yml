@@ -66,8 +66,8 @@ services:
       - zabbix-java-gateway
       - zabbix-server
     volumes: 
-      - portainer/Zabbix/ssl/apache2:/etc/ssl/apache2
-      - poratiner/Zabbix/web/certs:/etc/zabbix/web/certs
+      - /portainer/Zabbix/ssl/apache2:/etc/ssl/apache2
+      - /poratiner/Zabbix/web/certs:/etc/zabbix/web/certs
   zabbix-agent2:
     image: zabbix/zabbix-agent2:alpine-latest
     container_name: zabbix-agent2
