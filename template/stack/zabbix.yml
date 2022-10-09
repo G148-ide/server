@@ -70,7 +70,7 @@ services:
     restart: always
     privileged: true
     environment: 
-      ZBX_HOSTNAME: Zabbix server
+      ZBX_HOSTNAME=Zabbix-server
       ZBX_SERVER_HOST=zabbix-server
     ports: 
       - 10050:10050
