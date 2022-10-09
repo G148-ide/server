@@ -1,0 +1,86 @@
+---
+version: "3.3"
+services:
+  zabbix-database:
+    image: mysql:latest
+    container_name: zabbix-database
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+    environment:
+      MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    networks: 
+      - zabbix
+  zabbix-java-gateway:
+    image: zabbix/zabbix-java-gateway:alpine-latest
+    container_name: zabbix-java-gateway
+    restart: always
+    environment:
+      ZBX_START_POLLERS=5
+    networks:
+      - zabbix
+  zabbix-server:
+    image: zabbix/zabbix-server-mysql:alpine-latest
+    container_name: zabbix-server
+    restart: always
+    environment:
+      DB_SERVER_HOST=zabbix-database
+      MYSQL_DATABASE=zabbix
+      MYSQL_USER=${MYSQL_USER}
+      MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      ZBX_IPMIPOLLERS=1
+      ZBX_JAVAGATEWAY_ENABLE=true
+      ZBX_JAVAGATEWAY=zabbix-java-gateway
+      ZBX_STARTJAVAPOLLERS=5
+    ports: 
+      - 10051:10051
+    networks: 
+      - zabbix
+    depends_on: 
+      - zabbix-database
+      - zabbix-java-gateway
+    volumes: 
+      - portainer/zabbix/ssl/certs:/var/lib/zabbix/ssl/certs
+      - portainer/zabbix/ssl/keys:/var/lib/zabbix/ssl/keys
+      - portainer/zabbix/ssl/ssl_ca:/var/lib/zabbix/ssl/ssl_ca
+      - portainer/zabbix/externalscripts:/usr/lib/zabbix/externalscripts
+  zabbix-frontend:
+    image: zabbix/zabbix-web-apache-mysql:alpine-latest
+    container_name: zabbix-frontend
+    restart: always
+    environment: 
+      DB_SERVER_HOST=zabbix-database
+      MYSQL_DATABASE=zabbix
+      MYSQL_USER=${MYSQL_USER} 
+      MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports: 
+      - ${PORT}:8080
+    networks: 
+      - zabbix
+    depends_on: 
+      - zabbix-database
+      - zabbix-java-gateway
+      - zabbix-server
+    volumes: 
+      - portainer/zabbix/ssl/apache2:/etc/ssl/apache2
+      - poratiner/zabbix/web/certs:/etc/zabbix/web/certs
+  zabbix-agent2:
+    image: zabbix/zabbix-agent2:alpine-latest
+    container_name: zabbix-agent2
+    restart: always
+    privileged: true
+    environment: 
+      ZBX_HOSTNAME="Zabbix server"
+      ZBX_SERVER_HOST=zabbix-server
+    ports: 
+      - 10050:10050
+    networks: 
+      - zabbix
+    depends_on: 
+      - zabbix-database
+      - zabbix-java-gateway
+      - zabbix-server
+      - zabbix-frontend
+networks: 
+  zabbix:
+    name: zabbix
