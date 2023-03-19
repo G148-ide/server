@@ -1,2 +1,3 @@
-# server
-Armbian Server &amp; Manjaro Server Settings
+# Server
+
+Membuat server sendiri
