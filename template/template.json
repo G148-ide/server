@@ -104,9 +104,14 @@
             "default": "1000",
             "label": "PGID",
             "name": "PGID"
+          },
+          {
+            "default": "",
+            "label": "Timezone",
+            "name": "TZ"
           }
         ],
-        "image": "linuxserver/heimdall:latest",
+        "image": "lscr.io/linuxserver/heimdall:latest",
         "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/heimdall-icon.png",
         "name": "heimdall",
         "platform": "linux",
@@ -117,8 +122,31 @@
         "type": 1,
         "volumes": [
           {
-            "bind": "/portainer/Heimdall",
+            "bind": "/docker/Heimdall",
             "container": "/config"
+          }
+        ]
+      },
+      {
+        "categories": ["Tools", "Web", "Other"],
+        "description": "A modern (fully static, fast), secure (fully proxied), highly customizable application dashboard with integrations for more than 25 services and translations for over 15 languages. Easily configured via YAML files (or discovery via docker labels).",
+        "image": "ghcr.io/benphelps/homepage:latest",
+        "logo": "",
+        "name": "homepage",
+        "platform": "linux",
+        "ports": ["80:3000/tcp"],
+        "restart_policy": "unless-stopped",
+        "title": "Homepage",
+        "hostname": "Homepage",
+        "type": 1,
+        "volumes": [
+          {
+            "bind": "/var/run/docker.sock",
+            "container": "/var/run/docker.sock"
+          },
+          {
+            "bind": "/docker/Homepage",
+            "container": "/app/config"
           }
         ]
       },
