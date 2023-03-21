@@ -165,6 +165,7 @@
             "name": "PGID"
           },
           {
+            "default": "",
             "label": "Timezone",
             "name": "TZ"
           }
@@ -196,7 +197,29 @@
       {
         "categories": ["Other", "Tools"],
         "description": "A Free and Open Source Speedtest for HTML5 and more.",
-        "image": "linuxserver/librespeed:latest",
+        "env": [
+            {
+              "default": "1000",
+              "label": "PUID",
+              "name": "PUID"
+            },
+            {
+              "default": "1000",
+              "label": "PGID",
+              "name": "PGID"
+            },
+            {
+              "default": "",
+              "label": "Timezone",
+              "name": "TZ"
+            },
+            {
+                "default": "PASSWORD",
+                "label": "Password",
+                "name": "PASSWORD"
+              }
+          ],
+        "image": "lscr.io/linuxserver/librespeed:latest",
         "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/speedtest.png",
         "name": "librespeed",
         "platform": "linux",
@@ -207,7 +230,7 @@
         "type": 1,
         "volumes": [
           {
-            "bind": "/portainer/LibreSpeed",
+            "bind": "/docker/LibreSpeed",
             "container": "/config"
           }
         ]
@@ -242,15 +265,15 @@
         "type": 1,
         "volumes": [
           {
-            "bind": "/portainer/NextPVR",
+            "bind": "/docker/NextPVR",
             "container": "/config"
           },
           {
-            "bind": "/portainer/Recordings",
+            "bind": "/data/recordings",
             "container": "/recordings"
           },
           {
-            "bind": "/portainer/Buffer",
+            "bind": "/data/buffer",
             "container": "/buffer"
           }
         ]
@@ -271,15 +294,15 @@
         "type": 1,
         "volumes": [
           {
-            "bind": "/portainer/NextPVR",
+            "bind": "/docker/NextPVR",
             "container": "/config"
           },
           {
-            "bind": "/portainer/Recordings",
+            "bind": "/data/recordings",
             "container": "/recordings"
           },
           {
-            "bind": "/portainer/Buffer",
+            "bind": "/data/buffer",
             "container": "/buffer"
           }
         ]
@@ -299,11 +322,12 @@
             "name": "PGID"
           },
           {
+            "default": "",
             "label": "Timezone",
             "name": "TZ"
           }
         ],
-        "image": "linuxserver/pyload-ng:latest",
+        "image": "lscr.io/linuxserver/pyload-ng:latest",
         "logo": "https://raw.githubusercontent.com/pyload/pyload/main/media/logo.png",
         "name": "pyload",
         "note": "The default user and password is pyload/pyload.",
@@ -315,11 +339,11 @@
         "type": 1,
         "volumes": [
           {
-            "bind": "/portainer/Pyload",
+            "bind": "/docker/Pyload",
             "container": "/config"
           },
           {
-            "bind": "/portainer/Downloads",
+            "bind": "/data/downloads",
             "container": "/downloads"
           }
         ]
@@ -337,24 +361,33 @@
             "default": "1000",
             "label": "PGID",
             "name": "PGID"
+          },
+          {
+            "default": "",
+            "label": "Timezone",
+            "name": "TZ"
           }
         ],
-        "image": "linuxserver/transmission:latest",
+        "image": "lscr.io/linuxserver/transmission:latest",
         "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/transmission-icon.png",
         "name": "transmission",
         "platform": "linux",
-        "ports": ["9091:9091/tcp", "51413:51413/tcp"],
+        "ports": ["9091:9091/tcp", "51413:51413/tcp", "51413:51413/udp"],
         "restart_policy": "unless-stopped",
         "title": "Transmission",
         "type": 1,
         "volumes": [
           {
-            "bind": "/portainer/Transmission",
+            "bind": "/docker/Transmission",
             "container": "/config"
           },
           {
-            "bind": "/portainer/Downloads",
+            "bind": "/data/downloads",
             "container": "/downloads"
+          },
+          {
+            "bind": "/data/watch",
+            "container": "/watch"
           }
         ]
       },
@@ -371,10 +404,15 @@
             "default": "1000",
             "label": "PGID",
             "name": "PGID"
+          },
+          {
+            "default": "",
+            "label": "Timezone",
+            "name": "TZ"
           }
         ],
-        "image": "linuxserver/tvheadend:latest",
-        "logo": "http://i.imgur.com/zGSUAT4.png",
+        "image": "lscr.io/linuxserver/tvheadend:latest",
+        "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/tvheadend-big.png",
         "name": "tvheadend",
         "platform": "linux",
         "ports": ["9981:9981/tcp", "9982:9982/tcp"],
@@ -385,11 +423,11 @@
         "type": 1,
         "volumes": [
           {
-            "bind": "/portainer/TVHeadend",
+            "bind": "/docker/TVHeadend",
             "container": "/config"
           },
           {
-            "bind": "/portainer/Recordings",
+            "bind": "/data/recordings",
             "container": "/recordings"
           }
         ]
