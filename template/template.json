@@ -169,27 +169,27 @@
             "name": "TZ"
           }
         ],
-        "image": "linuxserver/jellyfin:latest",
+        "image": "jellyfin/jellyfin:latest",
         "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/jellyfin.png",
         "name": "jellyfin",
         "platform": "linux",
-        "ports": ["8096:8096/tcp", "8920:8920/tcp"],
+        "network": "host",
         "restart_policy": "unless-stopped",
         "title": "Jellyfin",
         "hostname": "Jellyfin",
         "type": 1,
         "volumes": [
           {
-            "bind": "/portainer/Jellyfin",
+            "bind": "/docker/Jellyfin/config",
             "container": "/config"
           },
           {
-            "bind": "/portainer/TV",
-            "container": "/data/tvshows"
+            "bind": "/docker/Jellyfin/cache",
+            "container": "/cache"
           },
           {
-            "bind": "/portainer/Movies",
-            "container": "/data/movies"
+            "bind": "/data/media",
+            "container": "/media"
           }
         ]
       },
