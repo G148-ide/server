@@ -106,7 +106,7 @@
         "type": 1,
         "volumes": [
           {
-            "bind": "grafana-storage",
+            "bind": "grafana_data",
             "container": "/var/lib/grafana"
           }
         ]
