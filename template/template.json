@@ -369,25 +369,6 @@
         ]
       },
       {
-        "categories": ["Monitoring", "Other", "Web", "Tools"],
-        "description": "Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud. Since its inception in 2012, many companies and organizations have adopted Prometheus, and the project has a very active developer and user community. It is now a standalone open source project and maintained independently of any company. To emphasize this, and to clarify the project's governance structure, Prometheus joined the Cloud Native Computing Foundation in 2016 as the second hosted project, after Kubernetes.",
-        "image": "prom/prometheus:latest",
-        "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/1033px-Prometheus_software_logo.svg.png",
-        "name": "prometheus",
-        "note": "<a href='https://grafana.com/docs/grafana-cloud/quickstart/docker-compose-linux/' target='_blank'>Visit prometheus.yml</a> for create prometheus.yml in /docker/Prometheus/prometheus.yml.",
-        "platform": "linux",
-        "ports": "9090:9090/tcp",
-        "restart_policy": "unless-stopped",
-        "title": "Prometheus",
-        "type": 1,
-        "volumes": [
-          {
-            "bind": "/docker/Prometheus/prometheus.yml",
-            "container": "/etc/prometheus/prometheus.yml"
-          }
-        ]
-      },
-      {
         "categories": ["Downloaders"],
         "description": "Transmission is designed for easy, powerful use. Transmission has the features you want from a BitTorrent client: encryption, a web interface, peer exchange, magnet links, DHT, µTP, UPnP and NAT-PMP port forwarding, webseed support, watch directories, tracker editing, global and per-torrent speed limits, and more.",
         "env": [
