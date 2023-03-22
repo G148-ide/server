@@ -374,7 +374,7 @@
         "image": "prom/prometheus:latest",
         "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Prometheus_software_logo.svg/1033px-Prometheus_software_logo.svg.png",
         "name": "prometheus",
-        "note": "<a href='https://grafana.com/docs/grafana-cloud/quickstart/docker-compose-linux/' target='_blank'>Visit prometheus.yml</a> for create prometheus.yml in /docker/Prometheus/prometheus.yml",
+        "note": "<a href='https://grafana.com/docs/grafana-cloud/quickstart/docker-compose-linux/' target='_blank'>Visit prometheus.yml</a> for create prometheus.yml in /docker/Prometheus/prometheus.yml.",
         "platform": "linux",
         "ports": "9090:9090/tcp",
         "restart_policy": "unless-stopped",
