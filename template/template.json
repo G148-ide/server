@@ -328,6 +328,26 @@
       ]
     },
     {
+      "categories": ["Monitoring", "Other", "Web", "Tools"],
+      "description": "",
+      "image": "prom/prometheus:latest",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/3/38/Prometheus_software_logo.svg",
+      "name": "prometheus",
+      "note": "",
+      "platform": "linux",
+      "ports": ["9090:9090/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Prometheus",
+      "hostname": "Prometheus",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/docker/Prometheus/prometheus.yml",
+          "container": "/etc/prometheus/prometheus.yml"
+        }
+      ]
+    },
+    {
       "categories": ["Downloaders"],
       "description": "Pyload is Free and Open Source download manager written in Python and designed to be extremely lightweight, easily extensible and fully manageable via web.",
       "env": [
