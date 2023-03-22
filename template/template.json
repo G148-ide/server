@@ -95,7 +95,7 @@
       "categories": ["Monitoring", "Other", "Web", "Tools"],
       "description": "Grafana open source software enables you to query, visualize, alert on, and explore your metrics, logs, and traces wherever they are stored. Grafana OSS provides you with tools to turn your time-series database (TSDB) data into insightful graphs and visualizations.",
       "image": "grafana/grafana-oss:latest",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Grafana_logo.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Grafana_icon.svg",
       "name": "grafana",
       "note": "The default user and password is admin/admin.",
       "platform": "linux",
