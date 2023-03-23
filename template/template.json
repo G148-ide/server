@@ -92,7 +92,7 @@
       ]
     },
     {
-      "categories": ["Monitoring", "Other", "Web", "Tools"],
+      "categories": ["Monitoring", "Other", "Web"],
       "description": "Grafana open source software enables you to query, visualize, alert on, and explore your metrics, logs, and traces wherever they are stored. Grafana OSS provides you with tools to turn your time-series database (TSDB) data into insightful graphs and visualizations.",
       "image": "grafana/grafana-oss:latest",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Grafana_icon.svg",
@@ -328,7 +328,7 @@
       ]
     },
     {
-      "categories": ["Monitoring", "Other", "Web", "Tools"],
+      "categories": ["Monitoring", "Other", "Web"],
       "description": "Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.",
       "image": "prom/node-exporter:latest",
       "logo": "https://gitlab.developers.cam.ac.uk/uploads/-/system/project/avatar/1783/node_exporter_logo.png",
@@ -347,7 +347,7 @@
       ]
     },
     {
-      "categories": ["Monitoring", "Other", "Web", "Tools"],
+      "categories": ["Monitoring", "Other", "Web"],
       "description": "Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud. Since its inception in 2012, many companies and organizations have adopted Prometheus, and the project has a very active developer and user community. It is now a standalone open source project and maintained independently of any company. To emphasize this, and to clarify the project's governance structure, Prometheus joined the Cloud Native Computing Foundation in 2016 as the second hosted project, after Kubernetes.",
       "image": "prom/prometheus:latest",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/3/38/Prometheus_software_logo.svg",
@@ -371,7 +371,7 @@
       ]
     },
     {
-      "categories": ["Downloaders"],
+      "categories": ["Downloaders", "Other", "Web"],
       "description": "Pyload is Free and Open Source download manager written in Python and designed to be extremely lightweight, easily extensible and fully manageable via web.",
       "env": [
         {
@@ -492,6 +492,34 @@
         {
           "bind": "/data/recordings",
           "container": "/recordings"
+        }
+      ]
+    },
+    {
+      "categories": ["Other", "Tools", "Maintenance"],
+      "description": "With watchtower you can update the running version of your containerized app simply by pushing a new image to the Docker Hub or your own image registry. Watchtower will pull down your new image, gracefully shut down your existing container and restart it with the same options that were used when it was deployed initially.",
+      "env": [
+        {
+          "default": "",
+          "label": "API Token",
+          "name": "WATCHTOWER_HTTP_API_TOKEN"
+        }
+      ],
+      "command": "--debug --http-api-update",
+      "image": "containrrr/watchtower:latest",
+      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/watchtower.png",
+      "name": "watchtower",
+      "note": "It is recommended to manually update your containers but we're including this for those of you that don't care. And port 8080 for API",
+      "platform": "linux",
+      "ports": ["8084:8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Watchtower",
+      "hostname": "Watchtower",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
         }
       ]
     },
