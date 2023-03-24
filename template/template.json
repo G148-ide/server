@@ -37,16 +37,16 @@
         "3000:3000/tcp"
       ],
       "restart_policy": "unless-stopped",
-      "title": "Adguard",
-      "hostname": "Adguard",
+      "title": "Adguard Home",
+      "hostname": "Adguard-Home",
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/Adguard/Workdir",
+          "bind": "/docker/adguardhome/workdir",
           "container": "/opt/adguardhome/work"
         },
         {
-          "bind": "/docker/Adguard/Conf",
+          "bind": "/docker/adguardhome/conf",
           "container": "/opt/adguardhome/conf"
         }
       ]
@@ -73,16 +73,16 @@
       "platform": "linux",
       "ports": ["8082:80/tcp"],
       "restart_policy": "unless-stopped",
-      "title": "FileBrowser",
-      "hostname": "FileBrowser",
+      "title": "File Browser",
+      "hostname": "File-Browser",
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/FileBrowser/filebrowser.db",
+          "bind": "/docker/filebrowser/filebrowser.db",
           "container": "/database/filebrowser.db"
         },
         {
-          "bind": "/docker/FileBrowser/settings.json",
+          "bind": "/docker/filebrowser/settings.json",
           "container": "/config/settings.json"
         },
         {
@@ -142,7 +142,7 @@
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/Heimdall",
+          "bind": "/docker/heimdall",
           "container": "/config"
         }
       ]
@@ -165,7 +165,7 @@
           "container": "/var/run/docker.sock"
         },
         {
-          "bind": "/docker/Homepage",
+          "bind": "/docker/homepage",
           "container": "/app/config"
         }
       ]
@@ -201,11 +201,11 @@
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/Jellyfin/config",
+          "bind": "/docker/jellyfin/config",
           "container": "/config"
         },
         {
-          "bind": "/docker/Jellyfin/cache",
+          "bind": "/docker/jellyfin/cache",
           "container": "/cache"
         },
         {
@@ -246,11 +246,11 @@
       "ports": ["8080:80/tcp"],
       "restart_policy": "unless-stopped",
       "title": "Libre Speed",
-      "hostname": "LibreSpeed",
+      "hostname": "Libre-Speed",
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/LibreSpeed",
+          "bind": "/docker/librespeed",
           "container": "/config"
         }
       ]
@@ -285,7 +285,7 @@
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/NextPVR",
+          "bind": "/docker/nextpvr",
           "container": "/config"
         },
         {
@@ -314,7 +314,7 @@
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/NextPVR",
+          "bind": "/docker/nextpvr",
           "container": "/config"
         },
         {
@@ -328,6 +328,30 @@
       ]
     },
     {
+      "categories": ["Proxy", "Tools"],
+      "description": "Nginx Proxy Manager enables you to easily forward to your websites running at home or otherwise, including free SSL, without having to know too much about Nginx or Letsencrypt.",
+      "image": "jc21/nginx-proxy-manager:latest",
+      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/proxy_mgr.png",
+      "name": "nginx-proxy-manager",
+      "note": "The default user and password is admin@example.com/changeme.",
+      "platform": "linux",
+      "ports": ["81:81/tcp", "80:80/tcp", "443:443/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Nginx Proxy Manager",
+      "hostname": "Nginx-Proxy-Manager",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/docker/nginxproxymanager/config",
+          "container": "/data"
+        },
+        {
+          "bind": "/docker/nginxproxymanager/letsencrypt",
+          "container": "/etc/letsencrypt"
+        }
+      ]
+    },
+    {
       "categories": ["Monitoring", "Other", "Web"],
       "description": "Prometheus exporter for hardware and OS metrics exposed by *NIX kernels, written in Go with pluggable metric collectors.",
       "image": "prom/node-exporter:latest",
@@ -337,7 +361,7 @@
       "ports": ["9100:9100/tcp"],
       "restart_policy": "unless-stopped",
       "title": "Node Exporter",
-      "hostname": "Node Exporter",
+      "hostname": "Node-Exporter",
       "type": 1,
       "volumes": [
         {
@@ -361,7 +385,7 @@
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/Prometheus/prometheus.yml",
+          "bind": "/docker/prometheus/prometheus.yml",
           "container": "/etc/prometheus/prometheus.yml"
         },
         {
@@ -402,7 +426,7 @@
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/Pyload",
+          "bind": "/docker/pyload",
           "container": "/config"
         },
         {
@@ -486,40 +510,12 @@
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/TVHeadend",
+          "bind": "/docker/tvheadend",
           "container": "/config"
         },
         {
           "bind": "/data/recordings",
           "container": "/recordings"
-        }
-      ]
-    },
-    {
-      "categories": ["Other", "Tools", "Maintenance"],
-      "description": "With watchtower you can update the running version of your containerized app simply by pushing a new image to the Docker Hub or your own image registry. Watchtower will pull down your new image, gracefully shut down your existing container and restart it with the same options that were used when it was deployed initially.",
-      "env": [
-        {
-          "default": "",
-          "label": "API Token",
-          "name": "WATCHTOWER_HTTP_API_TOKEN"
-        }
-      ],
-      "command": "--debug --http-api-update",
-      "image": "containrrr/watchtower:latest",
-      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/watchtower.png",
-      "name": "watchtower",
-      "note": "It is recommended to manually update your containers but we're including this for those of you that don't care. And port 8080 for API",
-      "platform": "linux",
-      "ports": ["8084:8080/tcp"],
-      "restart_policy": "unless-stopped",
-      "title": "Watchtower",
-      "hostname": "Watchtower",
-      "type": 1,
-      "volumes": [
-        {
-          "bind": "/var/run/docker.sock",
-          "container": "/var/run/docker.sock"
         }
       ]
     },
