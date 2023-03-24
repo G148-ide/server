@@ -2,7 +2,7 @@
   "version": "2",
   "templates": [
     {
-      "categories": ["Other"],
+      "categories": ["DNS", "Other","Tools"],
       "description": "AdGuard Home is a network-wide software for blocking ads & tracking. After you set it up, it’ll cover ALL your home devices, and you don’t need any client-side software for that. With the rise of Internet-Of-Things and connected devices, it becomes more and more important to be able to control your whole network.",
       "env": [
         {
@@ -71,7 +71,7 @@
       "name": "filebrowser",
       "note": "The default user and password is admin/admin.",
       "platform": "linux",
-      "ports": ["8082:80/tcp"],
+      "ports": ["8085:80/tcp"],
       "restart_policy": "unless-stopped",
       "title": "File Browser",
       "hostname": "File-Browser",
@@ -371,12 +371,41 @@
       ]
     },
     {
+      "categories": ["DNS", "Other", "Tools"],
+      "description": "A Linux network-level advertisement and Internet tracker blocking application which acts as a DNS sinkhole.",
+      "image": "pihole/pihole:latest",
+      "logo": "https://raw.githubusercontent.com/Qballjos/portainer_templates/master/Images/pihole.png",
+      "name": "pihole",
+      "note": "When the installation is complete, navigate to your.ip.goes.here:1010/admin. Follow the article <a href='https://medium.com/@niktrix/getting-rid-of-systemd-resolved-consuming-port-53-605f0234f32f'>here</a> if you run into issues binding to port 53.",
+      "platform": "linux",
+      "ports": [
+        "53:53/tcp",
+        "53:53/udp",
+        "67:67/udp",
+        "1010:80/tcp",
+        "4443:443/tcp"
+      ],
+      "restart_policy": "unless-stopped",
+      "title": "Pi-Hole",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/docker/pihole/config",
+          "container": "/etc/pihole"
+        },
+        {
+          "bind": "/docker/pihole/dnsmasq.d",
+          "container": "/etc/dnsmasq.d"
+        }
+      ]
+    },
+    {
       "categories": ["Monitoring", "Other", "Web"],
       "description": "Prometheus is an open-source systems monitoring and alerting toolkit originally built at SoundCloud. Since its inception in 2012, many companies and organizations have adopted Prometheus, and the project has a very active developer and user community. It is now a standalone open source project and maintained independently of any company. To emphasize this, and to clarify the project's governance structure, Prometheus joined the Cloud Native Computing Foundation in 2016 as the second hosted project, after Kubernetes.",
       "image": "prom/prometheus:latest",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/3/38/Prometheus_software_logo.svg",
       "name": "prometheus",
-      "note": "<a href='https://grafana.com/docs/grafana-cloud/quickstart/docker-compose-linux/' target='_blank'>Visit site</a> for config prometheus.yml in /docker/Prometheus/prometheus.yml",
+      "note": "<a href='https://grafana.com/docs/grafana-cloud/quickstart/docker-compose-linux/' target='_blank'>Visit site</a> for config prometheus.yml in /docker/prometheus/prometheus.yml",
       "platform": "linux",
       "ports": ["9090:9090/tcp"],
       "restart_policy": "unless-stopped",
