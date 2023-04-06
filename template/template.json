@@ -387,6 +387,7 @@
       ],
       "restart_policy": "unless-stopped",
       "title": "Pi-Hole",
+      "hostname": "Pi-Hole",
       "type": 1,
       "volumes": [
         {
@@ -465,7 +466,49 @@
       ]
     },
     {
-      "categories": ["Downloaders"],
+      "categories": ["Proxy", "Tools"],
+      "description": "Traefik (pronounced traffic) is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.",
+      "image": "traefik:latest",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Traefik.logo.png",
+      "name": "traefik",
+      "platform": "linux",
+      "ports": ["80:80/tcp", "443:443/tcp", "8080:8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Traefik",
+      "hostname": "Traefik",
+      "labels": [
+        {
+          "name": "traefik.enable",
+          "value": "true"
+        },
+        {
+          "name": "traefik.http.routers.traefik.service",
+          "value": "api@internal"
+        },
+        {
+          "name": "traefik.http.routers.traefik.entrypoints",
+          "value": "web, websecure"
+        },
+        {
+          "name": "traefik.http.routers.traefik.rule",
+          "value": "Host(`example.local`)"
+        }
+      ],
+      "command": "'--api.insecure=true' '--providers.docker=true' '--providers.docker.exposedbydefault=false' '--entrypoints.web.address=:80' '--entrypoints.websecure.address=:443' '--certificatesresolvers.myresolver.acme.tlschallenge=true' '--certificatesresolvers.myresolver.acme.email=your@email.com' '--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json'",
+      "type": 1,
+      "volumes": [
+        {
+          "bind": "/docker/traefik/letsencrypt",
+          "container": "/letsencrypt"
+        },
+        {
+          "bind": "/var/run/docker.sock",
+          "container": "/var/run/docker.sock"
+        }
+      ]
+    },
+    {
+      "categories": ["Downloaders", "Other", "Web"],
       "description": "Transmission is designed for easy, powerful use. Transmission has the features you want from a BitTorrent client: encryption, a web interface, peer exchange, magnet links, DHT, µTP, UPnP and NAT-PMP port forwarding, webseed support, watch directories, tracker editing, global and per-torrent speed limits, and more.",
       "env": [
         {
@@ -491,10 +534,11 @@
       "ports": ["9091:9091/tcp", "51413:51413/tcp", "51413:51413/udp"],
       "restart_policy": "unless-stopped",
       "title": "Transmission",
+      "hostname": "Transmission",
       "type": 1,
       "volumes": [
         {
-          "bind": "/docker/Transmission",
+          "bind": "/docker/transmission",
           "container": "/config"
         },
         {
