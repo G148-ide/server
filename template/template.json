@@ -264,6 +264,28 @@
       "restart_policy": "unless-stopped",
       "title": "Jellyfin",
       "hostname": "Jellyfin",
+      "labels": [
+        {
+          "name": "traefik.enable",
+          "value": "true"
+        },
+        {
+          "name": "traefik.http.routers.jellyfin.entrypoints",
+          "value": "web, websecure"
+        },
+        {
+          "name": "traefik.http.routers.jellyfin.tls.certresolver",
+          "value": "myresolver"
+        },
+        {
+          "name": "traefik.http.routers.jellyfin.rule",
+          "value": "Host(`example.local`)"
+        },
+        {
+          "name": "traefik.http.services.jellyfin.loadbalancer.server.port",
+          "value": "8096"
+        }
+      ],
       "type": 1,
       "volumes": [
         {
