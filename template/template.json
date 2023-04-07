@@ -45,10 +45,6 @@
           "value": "true"
         },
         {
-          "name": "traefik.http.routers.adguard.service",
-          "value": "api@internal"
-        },
-        {
           "name": "traefik.http.routers.adguard.entrypoints",
           "value": "web, websecure"
         },
@@ -59,6 +55,10 @@
         {
           "name": "traefik.http.routers.adguard.rule",
           "value": "Host(`example.local`)"
+        },
+        {
+          "name": "traefik.http.services.adguard.loadbalancer.server.port",
+          "value": "3000"
         }
       ],
       "type": 1,
@@ -445,6 +445,28 @@
       "restart_policy": "unless-stopped",
       "title": "Pyload",
       "hostname": "Pyload",
+      "labels": [
+        {
+          "name": "traefik.enable",
+          "value": "true"
+        },
+        {
+          "name": "traefik.http.routers.pyload.entrypoints",
+          "value": "web, websecure"
+        },
+        {
+          "name": "traefik.http.routers.pyload.tls.certresolver",
+          "value": "myresolver"
+        },
+        {
+          "name": "traefik.http.routers.pyload.rule",
+          "value": "Host(`example.local`)"
+        },
+        {
+          "name": "traefik.http.services.pyload.loadbalancer.server.port",
+          "value": "8000"
+        }
+      ],
       "type": 1,
       "volumes": [
         {
@@ -465,7 +487,6 @@
       "name": "traefik",
       "note": "After building traefik, change command on traefik container in '--certificatesresolvers.myresolver.acme.email' section and <a href='https://doc.traefik.io/traefik/user-guides/docker-compose/acme-tls/' target='_blank'>Visit the official guide</a>",
       "platform": "linux",
-      "network": "host",
       "ports": ["80:80/tcp", "443:443/tcp", "8080:8080/tcp"],
       "restart_policy": "unless-stopped",
       "title": "Traefik",
