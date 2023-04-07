@@ -97,6 +97,28 @@
       "restart_policy": "unless-stopped",
       "title": "File Browser",
       "hostname": "File-Browser",
+      "labels": [
+        {
+          "name": "traefik.enable",
+          "value": "true"
+        },
+        {
+          "name": "traefik.http.routers.filebrowser.entrypoints",
+          "value": "web, websecure"
+        },
+        {
+          "name": "traefik.http.routers.filebrowser.tls.certresolver",
+          "value": "myresolver"
+        },
+        {
+          "name": "traefik.http.routers.filebrowser.rule",
+          "value": "Host(`example.local`)"
+        },
+        {
+          "name": "traefik.http.services.filebrowser.loadbalancer.server.port",
+          "value": "80"
+        }
+      ],
       "type": 1,
       "volumes": [
         {
@@ -180,6 +202,28 @@
       "restart_policy": "unless-stopped",
       "title": "Homepage",
       "hostname": "Homepage",
+      "labels": [
+        {
+          "name": "traefik.enable",
+          "value": "true"
+        },
+        {
+          "name": "traefik.http.routers.homepage.entrypoints",
+          "value": "web, websecure"
+        },
+        {
+          "name": "traefik.http.routers.homepage.tls.certresolver",
+          "value": "myresolver"
+        },
+        {
+          "name": "traefik.http.routers.homepage.rule",
+          "value": "Host(`example.local`)"
+        },
+        {
+          "name": "traefik.http.services.homepage.loadbalancer.server.port",
+          "value": "3000"
+        }
+      ],
       "type": 1,
       "volumes": [
         {
