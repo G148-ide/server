@@ -16,9 +16,9 @@
           "name": "PGID"
         },
         {
+          "default": "adguard home",
           "label": "CONTEXT_PATH",
-          "name": "CONTEXT_PATH",
-          "set": "adguard home"
+          "name": "CONTEXT_PATH"
         }
       ],
       "image": "adguard/adguardhome:latest",
@@ -39,6 +39,28 @@
       "restart_policy": "unless-stopped",
       "title": "Adguard Home",
       "hostname": "Adguard-Home",
+      "labels": [
+        {
+          "name": "traefik.enable",
+          "value": "true"
+        },
+        {
+          "name": "traefik.http.routers.adguard.service",
+          "value": "api@internal"
+        },
+        {
+          "name": "traefik.http.routers.adguard.entrypoints",
+          "value": "web, websecure"
+        },
+        {
+          "name": "traefik.http.routers.adguard.tls.certresolver",
+          "value": "myresolver"
+        },
+        {
+          "name": "traefik.http.routers.adguard.rule",
+          "value": "Host(`example.local`)"
+        }
+      ],
       "type": 1,
       "volumes": [
         {
