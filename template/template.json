@@ -39,28 +39,6 @@
       "restart_policy": "unless-stopped",
       "title": "Adguard Home",
       "hostname": "Adguard-Home",
-      "labels": [
-        {
-          "name": "traefik.enable",
-          "value": "true"
-        },
-        {
-          "name": "traefik.http.routers.adguard.entrypoints",
-          "value": "web, websecure"
-        },
-        {
-          "name": "traefik.http.routers.adguard.tls.certresolver",
-          "value": "myresolver"
-        },
-        {
-          "name": "traefik.http.routers.adguard.rule",
-          "value": "Host(`example.local`)"
-        },
-        {
-          "name": "traefik.http.services.adguard.loadbalancer.server.port",
-          "value": "3000"
-        }
-      ],
       "type": 1,
       "volumes": [
         {
@@ -97,28 +75,6 @@
       "restart_policy": "unless-stopped",
       "title": "File Browser",
       "hostname": "File-Browser",
-      "labels": [
-        {
-          "name": "traefik.enable",
-          "value": "true"
-        },
-        {
-          "name": "traefik.http.routers.filebrowser.entrypoints",
-          "value": "web, websecure"
-        },
-        {
-          "name": "traefik.http.routers.filebrowser.tls.certresolver",
-          "value": "myresolver"
-        },
-        {
-          "name": "traefik.http.routers.filebrowser.rule",
-          "value": "Host(`example.local`)"
-        },
-        {
-          "name": "traefik.http.services.filebrowser.loadbalancer.server.port",
-          "value": "80"
-        }
-      ],
       "type": 1,
       "volumes": [
         {
@@ -202,28 +158,6 @@
       "restart_policy": "unless-stopped",
       "title": "Homepage",
       "hostname": "Homepage",
-      "labels": [
-        {
-          "name": "traefik.enable",
-          "value": "true"
-        },
-        {
-          "name": "traefik.http.routers.homepage.entrypoints",
-          "value": "web, websecure"
-        },
-        {
-          "name": "traefik.http.routers.homepage.tls.certresolver",
-          "value": "myresolver"
-        },
-        {
-          "name": "traefik.http.routers.homepage.rule",
-          "value": "Host(`example.local`)"
-        },
-        {
-          "name": "traefik.http.services.homepage.loadbalancer.server.port",
-          "value": "3000"
-        }
-      ],
       "type": 1,
       "volumes": [
         {
@@ -264,28 +198,6 @@
       "restart_policy": "unless-stopped",
       "title": "Jellyfin",
       "hostname": "Jellyfin",
-      "labels": [
-        {
-          "name": "traefik.enable",
-          "value": "true"
-        },
-        {
-          "name": "traefik.http.routers.jellyfin.entrypoints",
-          "value": "web, websecure"
-        },
-        {
-          "name": "traefik.http.routers.jellyfin.tls.certresolver",
-          "value": "myresolver"
-        },
-        {
-          "name": "traefik.http.routers.jellyfin.rule",
-          "value": "Host(`example.local`)"
-        },
-        {
-          "name": "traefik.http.services.jellyfin.loadbalancer.server.port",
-          "value": "8096"
-        }
-      ],
       "type": 1,
       "volumes": [
         {
@@ -511,28 +423,6 @@
       "restart_policy": "unless-stopped",
       "title": "Pyload",
       "hostname": "Pyload",
-      "labels": [
-        {
-          "name": "traefik.enable",
-          "value": "true"
-        },
-        {
-          "name": "traefik.http.routers.pyload.entrypoints",
-          "value": "web, websecure"
-        },
-        {
-          "name": "traefik.http.routers.pyload.tls.certresolver",
-          "value": "myresolver"
-        },
-        {
-          "name": "traefik.http.routers.pyload.rule",
-          "value": "Host(`example.local`)"
-        },
-        {
-          "name": "traefik.http.services.pyload.loadbalancer.server.port",
-          "value": "8000"
-        }
-      ],
       "type": 1,
       "volumes": [
         {
@@ -553,32 +443,10 @@
       "name": "traefik",
       "note": "After building traefik, change command on traefik container in '--certificatesresolvers.myresolver.acme.email' section and <a href='https://doc.traefik.io/traefik/user-guides/docker-compose/acme-tls/' target='_blank'>Visit the official guide</a>",
       "platform": "linux",
-      "ports": ["80:80/tcp", "443:443/tcp", "8080:8080/tcp"],
+      "network": "host",
       "restart_policy": "unless-stopped",
       "title": "Traefik",
       "hostname": "Traefik",
-      "labels": [
-        {
-          "name": "traefik.enable",
-          "value": "true"
-        },
-        {
-          "name": "traefik.http.routers.traefik.service",
-          "value": "api@internal"
-        },
-        {
-          "name": "traefik.http.routers.traefik.entrypoints",
-          "value": "web, websecure"
-        },
-        {
-          "name": "traefik.http.routers.traefik.tls.certresolver",
-          "value": "myresolver"
-        },
-        {
-          "name": "traefik.http.routers.traefik.rule",
-          "value": "Host(`example.local`)"
-        }
-      ],
       "command": "'--api.insecure=true' '--providers.docker=true' '--providers.docker.exposedbydefault=false' '--entrypoints.web.address=:80' '--entrypoints.websecure.address=:443' '--certificatesresolvers.myresolver.acme.tlschallenge=true' '--certificatesresolvers.myresolver.acme.email=your@email.com' '--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json'",
       "type": 1,
       "volumes": [
