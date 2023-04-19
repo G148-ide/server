@@ -70,7 +70,7 @@
       "restart_policy": "unless-stopped",
       "title": "Cloudflare Tunnel",
       "hostname": "Cloudflare-Tunnel",
-      "type": 1,
+      "type": 1
     },
     {
       "categories": ["Other", "Tools"],
