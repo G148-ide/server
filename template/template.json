@@ -52,6 +52,27 @@
       ]
     },
     {
+      "categories": ["Proxy", "Tunnel", "Tools"],
+      "description": "Cloudflare Tunnel is tunneling software that lets you quickly secure and encrypt application traffic to any type of infrastructure, so you can hide your web server IP addresses, block direct attacks, and get back to delivering great applications.",
+      "env": [
+        {
+          "default": "",
+          "label": "Tunnel Token",
+          "name": "TUNNEL_TOKEN"
+        }
+      ],
+      "image": "cloudflare/cloudflared:latest",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/9/94/Cloudflare_Logo.png",
+      "name": "cloudflare",
+      "platform": "linux",
+      "network": "host",
+      "command": "tunnel --no-autoupdate run --token $TUNNEL_TOKEN",
+      "restart_policy": "unless-stopped",
+      "title": "Cloudflare Tunnel",
+      "hostname": "Cloudflare-Tunnel",
+      "type": 1,
+    },
+    {
       "categories": ["Other", "Tools"],
       "description": "Web File Browser which can be used as a middleware or standalone app.",
       "env": [
@@ -447,7 +468,7 @@
       "restart_policy": "unless-stopped",
       "title": "Traefik",
       "hostname": "Traefik",
-      "command": "'--api.insecure=true' '--providers.docker=true' '--providers.docker.exposedbydefault=false' '--entrypoints.web.address=:80' '--entrypoints.websecure.address=:443' '--certificatesresolvers.myresolver.acme.tlschallenge=true' '--certificatesresolvers.myresolver.acme.email=your@email.com' '--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json'",
+      "command": "'--certificatesresolvers.myresolver.acme.tlschallenge=true' '--certificatesresolvers.myresolver.acme.email=your@email.com' '--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json'",
       "type": 1,
       "volumes": [
         {
