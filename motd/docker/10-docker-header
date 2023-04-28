@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+# This file is licensed under the terms of the GNU General Public
+# License version 2. This program is licensed "as is" without any
+# warranty of any kind, whether express or implied.
+
+. /etc/os-release
+BANNER="DOCKER"
+NAME=$(docker -v)
+
+TERM=linux toilet -f standard -F metal $(echo $BANNER)
+echo -e "Welcome to the \e[0;91m${NAME}\x1B[0m with \e[0;91m${PRETTY_NAME}\x1B[0m\n"
