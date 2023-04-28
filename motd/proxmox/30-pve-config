@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# This file is licensed under the terms of the GNU General Public
+# License version 2. This program is licensed "as is" without any
+# warranty of any kind, whether express or implied.
+
+IP_ADDRESS=$(hostname -I | awk '{print $1}')
+
+echo -e "[\e[31m Web browser to configure server\e[0m: \e[1mhttps://$IP_ADDRESS:8006\e[0m ]\n"
