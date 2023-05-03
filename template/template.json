@@ -457,6 +457,20 @@
       ]
     },
     {
+      "categories": ["Monitoring", "Other", "Web"],
+      "description": "Prometheus exporter for expose SNMP data in a format which Prometheus can ingest.",
+      "image": "prom/snmp-exporter:latest",
+      "logo": "https://gitlab.developers.cam.ac.uk/uploads/-/system/project/avatar/1783/node_exporter_logo.png",
+      "name": "snmp-exporter",
+      "note": "<a href='https://github.com/animegasan/server/wiki/Prometheus#snmp-mikrotik' target='_blank'>Visit site</a> for config prometheus.yml.",
+      "platform": "linux",
+      "ports": ["9116:9116/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "SNMP Exporter",
+      "hostname": "SNMP-Exporter",
+      "type": 1
+    },
+    {
       "categories": ["Proxy", "Tools"],
       "description": "Traefik (pronounced traffic) is a modern HTTP reverse proxy and load balancer that makes deploying microservices easy.",
       "image": "traefik:latest",
