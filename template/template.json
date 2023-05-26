@@ -279,7 +279,7 @@
     {
       "categories": ["Tools", "Web", "Other"],
       "description": "MikroTik Hotspot Monitor (Mikhmon) is a web-based application (MikroTik API class PHP) to help manage the Mikrotik management system, especially hotspot management.",
-      "image": "animega/mikhmon:latest",
+      "image": "animegasan/mikhmon:latest",
       "logo": "https://raw.githubusercontent.com/animegasan/mikhmon/main/version-4/assets/img/logo-test.png",
       "name": "mikhmon",
       "note": "The default user and password is mikhmon/1234.",
@@ -391,6 +391,20 @@
           "container": "/hostfs"
         }
       ]
+    },
+    {
+      "categories": ["Tools", "Web", "Other"],
+      "description": "PHPNuxBill (PHP Mikrotik Billing) is a web-based application (MikroTik API PHP class) Voucher management for MikroTik Hotspot.",
+      "image": "animegasan/phpnuxbill:latest",
+      "logo": "https://raw.githubusercontent.com/animegasan/phpnuxbill/main/src/ui/ui/images/logo.png",
+      "name": "phpnuxbill",
+      "note": "The default user and password is admin/admin.",
+      "platform": "linux",
+      "ports": ["8080:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "PHPNuxBill",
+      "hostname": "PHPNuxBill",
+      "type": 1
     },
     {
       "categories": ["Monitoring", "Other", "Web"],
