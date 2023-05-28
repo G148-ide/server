@@ -292,6 +292,20 @@
     },
     {
       "categories": ["Tools", "Web", "Other"],
+      "description": "Mikpos is a web-based application (MikroTik API PHP class) management users and payments that can be used in HotSpot and PPPoE MikroTik RouterOS users.",
+      "image": "animegasan/mikpos:latest",
+      "logo": "https://raw.githubusercontent.com/animegasan/mikpos/main/src/public/assets/images/brand/logo-1.png",
+      "name": "mikpos",
+      "note": "The default user and password is admin/admin.",
+      "platform": "linux",
+      "ports": ["8080:8080/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Mikpos",
+      "hostname": "Mikpos",
+      "type": 1
+    },
+    {
+      "categories": ["Tools", "Web", "Other"],
       "description": "NextPVR is a whole-home digital video recorder. The NextPVR server can be installed on Windows, Linux, Mac or Docker. Clients are available for a wide range of devices, allowing you access recordings and live TV throughout your home.",
       "image": "nextpvr/nextpvr_arm32v7:latest",
       "logo": "https://raw.githubusercontent.com/jellyfin/jellyfin-ux/master/plugins/SVG/jellyfin-plugin-nextpvr.svg",
