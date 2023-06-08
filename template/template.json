@@ -73,6 +73,42 @@
       "type": 1
     },
     {
+      "categories": ["Tools", "Web", "Other"],
+      "description": "Extraordinary CBT is a web-based application for exam management that can be run online or locally, hosting or VPS.",
+      "env": [
+        {
+          "default": "",
+          "label": "MySql Password",
+          "name": "MYSQL_DATABASE"
+        },
+        {
+          "default": "",
+          "label": "MySql User",
+          "name": "MYSQL_USER"
+        },
+        {
+          "default": "",
+          "label": "MySql Password",
+          "name": "MYSQL_PASSWORD"
+        },
+        {
+          "default": "",
+          "label": "MySql Root Password",
+          "name": "MYSQL_ROOT_PASSWORD"
+        }
+      ],
+      "image": "animegasan/extraordinary-cbt:latest",
+      "logo": "https://shellrean.sgp1.digitaloceanspaces.com/shellrean/public/logo.png",
+      "name": "extraordinary-cbt",
+      "note": "The default user and password is admin@shellrean.com/criticalpassword.",
+      "platform": "linux",
+      "ports": ["8080:80/tcp"],
+      "restart_policy": "unless-stopped",
+      "title": "Extraordinary CBT",
+      "hostname": "Extraordinary-CBT",
+      "type": 1
+    },
+    {
       "categories": ["Other", "Tools"],
       "description": "Web File Browser which can be used as a middleware or standalone app.",
       "env": [
