@@ -78,7 +78,7 @@
       "env": [
         {
           "default": "",
-          "label": "MySql Password",
+          "label": "MySql Database",
           "name": "MYSQL_DATABASE"
         },
         {
